@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.name }}</title>
+</head>
+<body>
+    <h1>{{ task.name }}</h1>
+    <p>نوع: {{ task.type }}</p>
+    <p>توضیحات: {{ task.content }}</p>
+    
+    <a href="{% url 'task_update' task.id %}">ویرایش این تسک</a>
+    <form action="{% url 'task_delete' task.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">حذف این تسک</button>
+    </form>
+    <br>
+    <a href="{% url 'session_detail' task.session.id %}">بازگشت به جزئیات جلسه</a>
+</body>
+</html>

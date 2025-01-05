@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آپلود ویدئو</title>
+</head>
+<body>
+    <h1>آپلود ویدئو</h1>
+    
+    {% if request.user.is_superuser %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">آپلود</button>
+        </form>
+    {% else %}
+        <p>شما اجازه آپلود ویدئو ندارید.</p>
+    {% endif %}
+    
+    <a href="{% url 'video_list' %}">بازگشت به لیست ویدئوها</a>
+</body>
+</html>

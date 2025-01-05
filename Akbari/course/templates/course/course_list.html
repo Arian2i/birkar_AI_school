@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست دوره‌ها</title>
+</head>
+<body>
+    <h1>دوره‌ها</h1>
+    <a href="{% url 'course_create' %}">ایجاد دوره جدید</a>
+    <ul>
+        {% for course in courses %}
+            <li>
+                <a href="{% url 'course_detail' course.id %}">{{ course.name }}</a>
+            </li>
+        {% empty %}
+            <li>هیچ دوره‌ای وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

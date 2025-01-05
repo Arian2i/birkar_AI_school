@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>تأیید حذف</title>
+</head>
+<body>
+    <h1>آیا از حذف {{ course.name }} مطمئن هستید؟</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">حذف</button>
+    </form>
+    <a href="{% url 'course_list' %}">بازگشت به لیست دوره‌ها</a>
+</body>
+</html>

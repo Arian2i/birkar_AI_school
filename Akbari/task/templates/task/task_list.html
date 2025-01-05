@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست تسک‌ها</title>
+</head>
+<body>
+    <h1>تسک‌ها</h1>
+
+    <h2>سشن‌ها</h2>
+    <ul>
+        {% for session in sessions %}
+            <li>
+                <a href="{% url 'task_create' session.id %}">ایجاد تسک جدید برای سشن {{ session.id }}</a>
+            </li>
+        {% empty %}
+            <li>هیچ سشنی وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'task_detail' task.id %}">{{ task.name }}</a>
+                (نوع: {{ task.task_type }})
+            </li>
+        {% empty %}
+            <li>هیچ تسکی وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

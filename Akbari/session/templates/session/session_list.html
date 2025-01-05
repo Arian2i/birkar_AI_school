@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>لیست جلسات</title>
+</head>
+<body>
+    <h1>جلسات</h1>
+    <a href="{% url 'session_create' %}">ایجاد جلسه جدید</a>
+    <ul>
+        {% for session in sessions %}
+            <li>
+                <a href="{% url 'session_detail' session.id %}">{{ session.name }}</a>
+            </li>
+        {% empty %}
+            <li>هیچ جلسه‌ای وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

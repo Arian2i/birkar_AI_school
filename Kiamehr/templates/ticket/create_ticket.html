@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+
+<div class="container col-xl-12 col-xxl-10 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-6 text-center text-lg-start">
+            <div class="h-100">
+                <img src="{% static 'assests/support.png' %}" class="card-img-top" alt="">
+            </div>
+
+        </div>
+        <div class="col-md-10 mx-auto col-lg-6">
+            <h2 class="display-6 fw-bold lh-1 mb-3 text-center">creat new ticket </h2>
+            <form class="p-4 md-5 border rounder-3 bg-light" method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    {% render_field form.ticket_title class="form-control" %}
+                    <label for="floatingInput">ticket title</label>
+                </div>
+                <div class="form-floating mb-3">
+                    {% render_field form.ticket_description class="form-control" %}
+                    <label for="floatingPassword">tell us more about the issue</label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit"> submit</button>
+
+                <!--<thead>
+                    <tr>
+                        <th scope="col">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="" class="btn btn-outline-primary btn-sm">assign to engineer</a></td>
+                    </tr>-->
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

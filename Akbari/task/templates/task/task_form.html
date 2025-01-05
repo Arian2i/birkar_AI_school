@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if task %}ویرایش تسک{% else %}ایجاد تسک{% endif %}</title>
+</head>
+<body>
+    <h1>{% if task %}ویرایش تسک{% else %}ایجاد تسک{% endif %}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره</button>
+    </form>
+
+    <a href="{% url 'session_detail' session_id %}">بازگشت به جزئیات جلسه</a>
+</body>
+</html>

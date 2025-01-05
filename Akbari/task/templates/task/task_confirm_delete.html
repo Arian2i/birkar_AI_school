@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>تأیید حذف تسک</title>
+</head>
+<body>
+    <h1>آیا مطمئن هستید که می‌خواهید این تسک را حذف کنید؟</h1>
+    <p>{{ task.name }}</p>
+    
+    <form action="{% url 'task_delete' task.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">بله، حذف کن</button>
+    </form>
+    <a href="{% url 'session_detail' task.session.id %}">بازگشت به جزئیات جلسه</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ session.name }}</title>
+</head>
+<body>
+    <h1>{{ session.name }}</h1>
+    <p>دوره: {{ session.course.name }}</p>
+    
+    <h2>تسک های مرتبط:</h2>
+    <ul>
+        {% for task in session.tasks.all %}
+            <li>
+                <a href="{% url 'task_detail' task.id %}">{{ task.name }}</a>
+            </li>
+        {% empty %}
+            <li>هیچ تسکی وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'session_update' session.id %}">ویرایش این جلسه</a>
+    <form action="{% url 'session_delete' session.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">حذف این جلسه</button>
+    </form>
+    <br>
+    <a href="{% url 'session_list' %}">بازگشت به لیست جلسات</a>
+</body>
+</html>

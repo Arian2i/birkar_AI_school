@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ course.name }}</title>
+</head>
+<body>
+    <h1>{{ course.name }}</h1>
+    <p>مدت: {{ course.duration }}</p>
+    <p>سطح: {{ course.level }}</p>
+    <p>توضیحات: {{ course.description }}</p>
+    <p>صفحه استاد: <a href="{{ course.teacher_page }}">{{ course.teacher_page }}</a></p>
+    
+    <h2>جلسات مرتبط:</h2>
+    <ul>
+        {% for session in course.sessions.all %}
+            <li>
+                <a href="{% url 'session_detail' session.id %}">{{ session.name }}</a>
+                <h3>تسک های مرتبط:</h3>
+                <ul>
+                    {% for task in session.tasks.all %}
+                        <li>
+                            <a href="{% url 'task_detail' task.id %}">{{ task.name }}</a>
+                        </li>
+                    {% empty %}
+                        <li>هیچ تسکی وجود ندارد.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>هیچ تسکی وجود ندارد.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'course_update' course.id %}">ویرایش این دوره</a>
+    <form action="{% url 'course_delete' course.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">حذف این دوره</button>
+    </form>
+    <br>
+    <a href="{% url 'course_list' %}">بازگشت به لیست دوره‌ها</a>
+</body>
+</html>

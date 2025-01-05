@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for ticket in tickets %}
+    <div class="col">
+        <div class="card h-100">
+            <!--<img src="{% static 'assets/support2.png' %}" style="width: 10rem;" class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <h5 class="card-title">{{ticket.ticket_title}}</h5>
+                <p class="card-text">
+                    <b>#{{ticket.ticket_id}} </b> <br>
+                    {% if ticket.status == 'Pending' %}
+                    <span class="badge bg-warning">Pending</span>
+                    {% elif ticket.status == 'Active' %}
+                    <span class="badge bg-success">Active</span>
+                    {% elif ticket.status == 'Resolved' %}
+                    <span class="badge bg-danger">Resolved</span>
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{% url 'ticket-details' ticket.ticket_id %}" class="btn btn-primary btn-sm">view details</a>
+            <div class="card-footer">
+                <small class="text-muted">created {{ticket.created_on|naturaltime}}</small>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock content %}

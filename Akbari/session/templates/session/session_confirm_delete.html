@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>تأیید حذف جلسه</title>
+</head>
+<body>
+    <h1>آیا از حذف {{ session.name }} مطمئن هستید؟</h1>
+    <form action="{% url 'session_delete' session.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">حذف</button>
+    </form>
+    <a href="{% url 'session_list' %}">بازگشت به لیست جلسات</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if session %}ویرایش جلسه{% else %}ایجاد جلسه{% endif %}</title>
+</head>
+<body>
+    <h1>{% if session %}ویرایش جلسه{% else %}ایجاد جلسه{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره</button>
+    </form>
+    <a href="{% url 'session_list' %}">بازگشت به لیست جلسات</a>
+</body>
+</html>

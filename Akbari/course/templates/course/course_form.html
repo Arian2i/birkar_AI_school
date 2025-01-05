@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if course %}ویرایش دوره{% else %}ایجاد دوره{% endif %}</title>
+</head>
+<body>
+    <h1>{% if course %}ویرایش دوره{% else %}ایجاد دوره{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره</button>
+    </form>
+    <a href="{% url 'course_list' %}">بازگشت به لیست دوره‌ها</a>
+</body>
+</html>

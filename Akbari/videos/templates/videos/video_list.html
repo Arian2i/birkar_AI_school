@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست ویدئوها</title>
+</head>
+<body>
+    <h1>لیست ویدئوها</h1>
+
+    {% if videos %}
+        <ul>
+            {% for video in videos %}
+                <li>
+                    {{ video.title }} - <a href="{% url 'download_video' video.id %}">دانلود</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>ویدیویی موجود نیست در حال حاضر.</p>
+    {% endif %}
+
+    {% if user.is_superuser %}
+        <a href="{% url 'upload_video' %}">آپلود ویدئو جدید</a>
+    {% endif %}
+    
+</body>
+</html>
